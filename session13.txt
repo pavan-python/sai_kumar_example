@@ -1,0 +1,340 @@
+Error handling:
+-----------------
+1.Logical Error
+2.Runtime Error - Exception Handling
+
+Python Exception Handling
+---------------------------------------
+* Exception can be said to be any abnormal condition in a program resulting to the disruption in the flow of the program.
+
+* Whenever an exception occurs the program halts the execution and thus further code is not executed. Thus exception is that error which python script is unable to tackle with.
+
+* Exception in a code can also be handled. In case it is not handled, then the code is not executed further and hence execution stops when exception occurs.
+
+Types of Exception:
+------------------
+1.Predefined Exception
+2.Customized Exception / User Defined Exception
+
+
+Common Exceptions
+
+    ZeroDivisionError: Occurs when a number is divided by zero.
+
+    NameError: It occurs when a name is not found. It may be local or global.
+
+    IndentationError: If incorrect indentation is given.
+
+    IOError: It occurs when Input Output operation fails.
+
+    EOFError: It occurs when end of the file is reached and yet operations are being performed.
+List of Standard Exceptions -
+	
+1.Exception
+
+2.StopIteration
+
+3.SystemExit
+
+4.StandardError
+
+5.ArithmeticError
+
+6.OverflowError
+
+7.FloatingPointError
+
+8.ZeroDivisionError
+
+9.AssertionError
+
+10.AttributeError
+
+11.EOFError
+
+12.ImportError
+
+13.KeyboardInterrupt
+
+14.LookupError
+
+15.IndexError
+
+16.IOError
+
+
+
+    try:  
+        malicious code  
+    except Exception1:  
+        execute code  
+    except Exception2:  
+        execute code  
+    ....  
+    ....  
+    except ExceptionN:  
+        execute code  
+    else:  
+        In case of no exception, execute the else block code.  
+
+
+
+1. try : It is used to monitor all those instructions in which run time errors are expected.
+
+2. except : It is used to catch the thrown exceptions. This block is executed only when a exception is raised.
+
+--Exception Example
+
+try:
+    a=int(input("Enter first number:"))
+    b=int(input("Enter second number:"))
+    c=a/b
+    print("Quotient values=",c)
+except ZeroDivisionError:
+    print("Divide by Zero Error Occurs")
+finally:
+    print("Thank you")
+
+--example2
+
+try:
+    a=int(input("Enter First number:"))
+    b=int(input("Enter Second number:"))
+    c=a/b
+    print("Quotient values=",c)
+except ZeroDivisionError as msg:
+    print(msg)
+except ValueError as msg:
+    print(msg)
+    
+
+
+
+try:
+    a=int(input("Enter first number:"))
+    b=int(input("Enter second number:"))
+    c=a/b
+    print("Quotient value=",c)
+except Exception as msg:
+    print(msg)
+ 
+
+
+--Example3
+
+try:
+   fh = open("c:\\raj\\testfile", "r")
+   fh.write("This is my test file for exception handling!!")
+except IOError:
+   print ("Error: can\'t find file or read data")
+else:
+   print ("Written content in the file successfully")
+   fh.close()
+
+
+--Example3
+
+try:
+   fh = open("testfile", "r")
+   fh.write("This is my test file for exception handling!!")
+except IOError:
+   print ("Error: can\'t find file or read data")
+else:
+   print "Written content in the file successfully"
+
+--Example4
+
+
+try:
+   fh = open("testfile", "w")
+   fh.write("This is my test file for exception handling!!")
+finally:
+   print "Error: can\'t find file or read data"
+
+# How to print predefined Exception information:
+------------------------------------------------
+
+try:
+    a=int(input("Enter first number:"))
+    b=int(input("Enter second number:"))
+    c=a/b;
+except ZeroDivisionError as msg:
+    print(msg);
+
+
+
+Declaring Multiple Exception in Python:
+------------------------------------------
+
+Python allows us to declare multiple exceptions using the same except statement.
+
+Syntax:
+
+    try:  
+        code  
+    except Exception1
+    except Exception2
+    except Exception3
+        execute this code in case any Exception of these occur.  
+    else:  
+        execute code in case no exception occurred. 
+
+
+
+--Example 4
+
+
+def Test(i):
+    l = [1,2,3]
+    try:
+        assert i >= 1
+        return l[i]
+    except TypeError:                                  ####A
+         print ("dealing with TypeError")
+    except IndexError:                                ####B
+         print ("dealing with IndexError")
+    except:                                                         ####C
+         print ("oh dear")
+    finally:                                                           ####D
+         print ("the end")
+
+if __name__ =="__main__":
+    print(Test(2));
+
+Note: Assertions concept can be used to alert programmer to resolve development time errors.
+
+Exception Handling can be used to handle run time errors.
+
+or
+
+def Test(i):
+    l = [1,2,3,4,5]
+    try:
+        if i >= 1:
+
+        return l[i]
+    except Exception as msg:
+        print(msg)
+        
+if __name__ =="__main__":
+    print(Test(4));
+
+ 
+Custom Exception or Userdefined Exception in python:
+-----------------------------------------------------
+
+1.Declare the Exception
+
+2.Raise the Exception
+
+3.Handling the Exception
+
+
+1.class MyException(Exception):
+    
+
+2.raise MyException("string")
+
+
+3.except MyException:
+
+Custom Exception Examples
+-------------------------
+
+class ValueTooSmallError(Exception):
+   """Raised when the input value is too small"""
+   pass
+
+class ValueTooLargeError(Exception):
+   """Raised when the input value is too large"""
+   pass
+
+# you need to guess this number
+number = 100
+
+while True:
+   try:
+       i_num = int(input("Enter a number: "))
+       if i_num < number:
+           raise ValueTooSmallError
+       elif i_num > number:
+           raise ValueTooLargeError
+       break
+   except ValueTooSmallError:
+       print("This value is too small, try again!")
+       print()
+   except ValueTooLargeError:
+       print("This value is too large, try again!")
+       print()
+
+print("Congratulations! You guessed it correctly.")
+
+
+pass Statement:
+---------------
+
+The pass statement is used as a placeholder for future code.
+
+When the pass statement is executed, nothing happens, but you avoid getting an error when empty code is not allowed.
+
+Empty code is not allowed in loops, function definitions, class definitions, or in if statements.
+
+
+--Example2 Student mark list (0 to 100)
+
+
+# define Python user-defined exceptions
+class MarkError(Exception):
+   """Base class for other exceptions"""
+   pass
+
+while True:
+   try:
+       mark = int(input("Enter a mark: "))
+       if  (mark <0 or mark >100):
+           raise MarkError
+       elif (mark >=40):
+           print("Given mark is pass=",mark);
+           break
+       else:
+           print("Given mark is fail=",mark);
+           break
+    
+   except MarkError:
+       print("Invalid Mark, try again!")
+       print()
+   
+
+
+--Salary Exception
+
+# define Python user-defined exceptions (20000 to 50000)
+class SalaryError(Exception):
+   """Base class for other exceptions"""
+   pass
+
+while True:
+   try:
+       salary = int(input("Enter a salary: "))
+       if  (salary <20000 or salary >50000):
+           raise SalaryError
+       else:
+           print("Given salary =",salary);
+           break
+   except SalaryError:
+       print("Invalid Salary, try again!")
+       print()
+   
+Assignment:
+----------
+EB Bill Reading
+--------------
+oldread=20000
+newread=19500
+
+if newread < oldread 
+raise ReadingError
+else
+unit=newread - oldread
+
+

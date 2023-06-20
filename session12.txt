@@ -1,0 +1,300 @@
+Python Date and Time:
+-----------------------------
+
+* Python provides time package to deal with Date and time. It helps to retrieve current date and time and manipulation using built-in methods.
+
+Retrieve Time
+
+To retrieve current time, Python provides a predefined function localtime(), it receives a parameter time.time(). Here,
+
+time is a module and time() is a function that returns the current system time in number of ticks since 12:00 am, January 1,1970. It is known as epoch.
+
+Important Modules:
+-------------------
+time
+datetime
+calendar
+date
+timedelta -A duration of time used for manipulating dates
+
+
+Tick is simply a floating point number in seconds since epoch.
+
+Python Retrieving Time Example
+
+import time
+localtime = time.localtime(time.time())  
+print ("Current Time is :", localtime) 
+
+Formatted Datetime:
+------------------
+
+import time
+localtime = time.asctime(time.localtime(time.time()) )
+print ("Formatted time :", localtime)
+
+II Method
+
+from time import *
+localtime = asctime(localtime(time()) )
+print ("Formatted time :", localtime)
+
+
+Write a Python script to display the 
+
+a) Current date and time
+b) Current year
+c) Month of year
+d) Week number of the year
+e) Weekday of the week
+f) Day of year
+g) Day of the month
+h) Day of week
+
+import datetime
+print("Current date and time: " , datetime.datetime.now())
+print("Current year: ", datetime.date.today().strftime("%Y"))
+print("Month of year: ", datetime.date.today().strftime("%B"))
+print("Week number of the year: ", datetime.date.today().strftime("%W"))
+print("Weekday of the week: ", datetime.date.today().strftime("%w"))
+print("Day of year: ", datetime.date.today().strftime("%j"))
+print("Day of the month : ", datetime.date.today().strftime("%d"))
+print("Day of week: ", datetime.date.today().strftime("%A"))
+
+
+II method 
+
+from datetime import *
+
+print("Current date and time: " , datetime.now())
+print("Current year: ", date.today().strftime("%Y"))
+print("Month of year: ", date.today().strftime("%B"))
+print("Week number of the year: ", date.today().strftime("%W"))
+print("Weekday of the week: ", date.today().strftime("%w"))
+print("Day of year: ",date.today().strftime("%j"))
+print("Day of the month : ", date.today().strftime("%d"))
+print("Day of week: ", date.today().strftime("%A"))
+
+# How to display Time only?
+# How to display date only?
+
+from datetime import *
+print("Current date and time: " , datetime.now())
+print("Current  time: " , datetime.time(datetime.now()))
+print("Current  date: " , datetime.date(datetime.now()))
+
+
+
+# how display yy-mm-dd format?
+
+import datetime
+print("Current date and time: " , datetime.datetime.now())
+print("Current year: ", datetime.date.today().strftime("%Y"),"-",
+      datetime.date.today().strftime("%m"),"-",datetime.date.today().strftime("%d"))
+
+
+
+asctime(time):
+---------------
+* It takes the tuple returned by localtime() as parameter. 
+
+* It returns a 24 character string.
+
+--example
+
+import time  
+t = time.localtime()  
+print (time.asctime(t))
+
+--Display yearly calendar
+
+Calendar Module
+------------------
+prcal()
+month()
+isleap()
+
+import calendar  
+calendar.prcal(2022)  
+
+
+# Display monthly calendar
+
+import calendar  
+print ("Current month is:")
+cal = calendar.month(2022,2)  
+print (cal)
+
+
+Python isleap(year) Method Example
+
+It returns a Boolean value i.e., true or false. True in case given year is leap else false. See, the following example.
+
+import calendar
+y=int(input("Enter any year:"))
+if calendar.isleap(y):
+   print("Given year is leap year=",y)
+else:
+   print("Given year is not leap year=",y);
+
+
+
+
+# First import the calendar module  
+import calendar  
+# ask of month and year  
+yy = int(input("Enter year: "))  
+mm = int(input("Enter month: "))  
+# display the calendar  
+print(calendar.month(yy,mm))  
+
+# How do I calculate number of days between two dates using Python?
+
+from datetime  import date
+
+d0 = date(2008, 8, 18)
+d1 = date(2008, 9, 26)
+diff= d1 - d0
+print ("No of Days =",diff.days)
+
+
+
+# how to calcualte year,month and date
+
+from datetime import datetime
+
+def diff_month(d1, d2):
+    print("year=",(d1.year - d2.year))
+    print("month=", abs((d1.month  - d2.month)))
+    print("days=",abs((d1.day - d2.day)))
+
+diff_month(datetime(2021,6,27), datetime(1993,11,28))
+
+# how to accept runtime values and calcuate year,month and day?
+
+import datetime
+from datetime import datetime
+
+def diff_month(d1, d2):
+    print("year=",(d1.year - d2.year))
+    print("month=", (d1.month  - d2.month))
+    print("days=",(d1.day - d2.day))
+
+
+if __name__ == "__main__":
+    s = input("Enter date(yyyy-mm-dd):")
+    s1= input("Enter date(yyyy-mm-dd):")
+    slist = s.split("-")
+    slist1 = s1.split("-")
+    diff_month(datetime(int(slist[0]),int(slist[1]),int(slist[2])),
+               datetime(int(slist1[0]),int(slist1[1]),int(slist1[2])))
+
+
+
+
+
+# Write a Python program to add 100 days from current date.
+
+from datetime import date, timedelta
+dt = date.today() + timedelta(100)
+print('Current Date :',date.today())
+print("Maturity date=",dt);
+
+
+
+# Write a Python program to subtract five days from current date.
+
+from datetime import date, timedelta
+dt = date.today() - timedelta(5)
+print('Current Date :',date.today())
+print('5 days before Current Date :',dt)
+
+
+
+
+
+# Write a Python program to subtract five days from current date.
+
+from datetime import date, timedelta
+dt = date.today() - timedelta(5)
+yt= date.today() - timedelta(1)
+tt=date.today() + timedelta(1)
+print('Current Date :',date.today())
+print('Yesterdaydate:',yt)
+print('Tomorrow date:',tt)
+
+
+
+
+# write a python program to display holiday list
+
+stdate : 01-06-2022		enddate: 30-06-2022
+
+import datetime
+c=0
+stdate = datetime.datetime(2022, 6, 1)
+enddate=datetime.datetime(2022, 6,30)
+while stdate <=enddate:
+    a = stdate.weekday()
+    if(a==5  or a==6):
+        print(stdate.strftime("%Y"),"-",
+         stdate.strftime("%m"),"-",stdate.strftime("%d"),"-",stdate.strftime("%A"))
+
+        c=c+1
+    stdate=stdate+datetime.timedelta(1)
+print("Total no of working days=",c)
+
+
+python Weekday:
+=============
+    0 - monday
+    1 - tuesday
+    2 - wed
+    3 -thu
+    4 -fri
+    5 -sat
+    6 -sun
+    
+
+# Write a python program to display workingday list
+import datetime
+stdate = datetime.datetime(2020, 7, 1)
+enddate=datetime.datetime(2020, 7, 31)
+while stdate <=enddate:
+    a = stdate.weekday()
+    if(a in(0,1,2,3,4)):
+        print(stdate)
+    stdate=stdate+datetime.timedelta(1)
+
+# II  Method
+
+# write a python program to display working day list
+
+import datetime
+c=0
+stdate = datetime.datetime(2021, 5, 1)
+enddate=datetime.datetime(2021, 5, 31)
+while stdate <=enddate:
+    a = stdate.weekday()
+    if(a!=5 and a!=6):
+        print(stdate)
+        c=c+1
+    stdate=stdate+datetime.timedelta(1)
+print("Total no of working days=",c)
+
+# another method
+
+import datetime
+c=0
+stdate = datetime.datetime(2020, 6, 1)
+enddate=datetime.datetime(2020, 6, 30)
+while stdate <=enddate:
+    a = stdate.weekday()
+    if(a!=5 and a!=6):
+        print(stdate.strftime("%Y"),"-",
+         stdate.strftime("%m"),"-",stdate.strftime("%d"),"-",stdate.strftime("%A"))
+
+        c=c+1
+    stdate=stdate+datetime.timedelta(1)
+print("Total no of working days=",c)
+

@@ -1,0 +1,308 @@
+Regular Expression:
+---------------------
+* A regular expression is a special sequence of characters that helps you match or find other strings.
+
+*  Regular expressions are widely used in UNIX world.
+
+* The module re provides full support for Perl-like regular expressions in Python. 
+
+* The re module raises the exception re.error if an error occurs while compiling or using a regular expression.
+
+You can easily tackle many basic patterns in Python using the ordinary characters. Ordinary characters are the simplest regular expressions.
+
+* They match themselves exactly and do not have a special meaning in their regular expression syntax.
+
+Regular Expression:
+------------------
+Character classes:
+------------------
+1.[abc] = Either a or b or c
+2.[^abc] = Except a or b or c
+3.[a-z] = Any lower case alphabet symbol
+4.[A-Z] = Any upper case alphabet symbol
+5.[a-zA-Z] Any alphabet symbols
+6.[0-9] = any digits from 0 to 9
+7.[a-zA-Z0-9] - Any alphanumeric character
+8.[^a-zA-Z0-9] - Except alphanumeric character (special character).
+
+9. \s - Space character
+10.\S - Any character Except space character
+11.\d - Any digit from 0 to 9
+12.\D - any character except digit
+13.\w - any word character[a-zA-Z0-9]
+14.\W - Any character except word character (Special character).
+
+15. . - Any character including special characters.
+
+16.'^'-  Matches the start of the string.
+
+17.'$' - Matches the end of the string.
+
+18.*   -ab* will match ‘a’, ‘ab’, or ‘a’ followed by any number of ‘b’s.
+
+19.?   - ab? will match either ‘a’ or ‘ab’.
+
+20._	- matcher('__') is considered valid.
+
+21. -   - should come at end or beginning in character class to avoid it's interpretation as range.
+
+22. + - ab+ will match ‘a’ followed by any non-zero number of ‘b’s; it will not match just ‘a’.
+
+What are various methods of Regular Expressions?
+
+The ‘re’ package provides multiple methods to perform queries on an input string. Here are the most commonly used methods, I will discuss:
+
+    re.match()
+    re.search()
+    re.findall()
+    re.split()
+    re.sub()
+    re.compile()
+
+--Example 1
+
+match():
+--------
+
+* We can use match function to check the given pattern at beginning of target string.
+
+* If the match is available then we will get match object,otherwise we will get None.
+
+
+import re
+result = re.match('priyanka', 'priyanka swetha mohammed tejasree,babu hari priyanka')
+print (result.group(0))
+
+output: 
+
+<_sre.SRE_Match object; span=(0, 2), match='AV'>
+
+
+import re
+s=input("Enter pattern to check")
+m=re.match(s,"abcabdefg")
+if m!=None:
+    print("Match is available at the begining of the string")
+    print("Start index:",m.start()," and End Index:",m.end())
+else:
+    print("Match is not available at the begining of the string")
+
+
+--Example 2
+
+
+import re
+result = re.search('priyanka', 'swetha mohammed tejasree,babu priyanka hari priyanka')
+print (result.group(0))
+
+output:
+
+Analytics
+
+--Example 3
+
+
+import re
+result = re.findall('priyanka', 'swetha mohammed tejasree,babu priyanka hari priyanka')
+print (result)
+
+--example2
+
+import re
+l=["priyanka","swetha"]
+for i in l:
+    result = re.findall(i, 'swetha mohammed tejasree,swetha,babu priyanka hari priyanka')
+    print(result)
+
+
+
+output:
+-------
+
+['priyanka', 'priyanka']
+
+
+--Example 4
+
+import re
+result=re.split('y','priyanka priyanka yousuf')
+print(result)
+
+output:
+
+['pri', 'anka']
+
+--Example 5
+
+import re
+result=re.split('i','Analytics Vidhya')
+
+print(result)
+
+output:
+-------
+
+['Analyt', 'cs V', 'dhya']
+
+--Example 6
+
+import re
+result=re.sub('nice','good','have a nice day')
+result1=re.sub('wipro','Ibm', ' Raja Shekar wipro hyderabad')
+print(result)
+print(result1)
+
+
+
+output:
+-------
+
+have a good day
+Raja Shekar Ibm hyderabad
+
+--example2
+
+import re
+x=input("Enter input string:")
+y=input("Enter search string:")
+z=input("Enter replace string:")
+
+result=re.sub(y,z,x)
+print(result)
+
+
+compile(string)
+---------------
+We can combine a regular expression pattern into pattern objects, which can be used for pattern matching. It also helps to search a pattern again without rewriting it.
+
+--Example 7
+
+import re
+obj=re.compile('AV')
+result=obj.findall('AV HPS school Hyd AV')
+print (result)
+result2=obj.findall('AV is largest analytics community of India')
+print (result2)
+result3=obj.search('AV is largest analytics')
+print(result3.group(0))
+result4=obj.sub('VA','AV is largest')
+print(result4)
+
+
+
+output:
+
+['AV', 'AV']
+['AV']
+
+
+--Example 8
+
+import re
+result = re.match('AV', 'AV Analytics Vidhya AV')
+print (result.group(0))
+
+output:
+AV
+
+
+
+Extract each character (using “\w“)
+------------------------------------
+import re
+result=re.findall('\w','God is Great and Time is gold')
+print (result)
+
+
+output:
+
+
+['G', 'o', 'd', 'i', 's', 'G', 'r', 'e', 'a', 't', 'a', 'n', 'd', 'T', 'i', 'm', 'e', 'i', 's', 'g', 'o', 'l', 'd']
+
+
+Extract each word (using “*” or “+“)
+------------------------------------
+
+import re
+result=re.findall('\w*','AV is largest Analytics community of India')
+print (result)
+
+output:
+------
+
+['AV', '', 'is', '', 'largest', '', 'Analytics', '', 'community', '', 'of', '', 'India', '']
+
+import re
+result=re.findall('\w+','God is Great and Time is gold')
+print (result)
+
+output:
+
+['God', 'is', 'Great', 'and', 'Time', 'is', 'gold']
+
+Return the first two character of each word:
+--------------------------------------------
+
+Answer:  Extract consecutive two characters of each word, excluding spaces (using “\w“)
+
+import re
+result=re.findall('\w\w','AV is largest Analytics community of India')
+print (result)
+
+output:
+--------
+
+['AV', 'is', 'la', 'rg', 'es', 'An', 'al', 'yt', 'ic', 'co', 'mm', 'un', 'it', 'of', 'In', 'di']
+
+import re
+result=re.findall('\w+','priyanka swetha mohammed babu tejasree')
+print (result)
+print("Total=",len(result))
+
+['priyanka', 'swetha', 'mohammed', 'babu', 'tejasree']
+
+Total= 5
+
+
+^ symbols:
+-----------
+We can use ^ symbol to check wheather the given target string starts with our provided patters or not.
+
+import re
+s="Learning Python is very easy"
+res=re.search("^Learn",s)
+if res!=None:
+    print("Target String starts with Learn")
+else:
+    print("Target String not starts with Learn")
+
+
+$ symbol:
+---------
+
+* We can use $ symbol to check wheather the given target string ends with our provided pattern or not 
+
+import re
+s="Learning Python is very easy"
+res=re.search("easy$",s)
+if res!=None:
+    print("Target String ends with easy")
+else:
+    print("Target String not ends with easy")
+
+
+
+
+Note : If we want to ignore case sensitive we have to pass 3rd argument re.IGNORECASE for search()
+
+
+import re
+s="Learning Python is very Easy"
+res=re.search("easy$",s,re.IGNORECASE)
+if res!=None:
+    print("Target String ends with easy")
+else:
+    print("Target String not ends with easy")
+
+
+
